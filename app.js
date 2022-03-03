@@ -9,6 +9,16 @@ const sraechTemparature= () =>{
     .then(data=>displayTemparature(data));
 }
 
-const displayTemparature =(temparature)=>{
-    console.log(temparature);
+const setInnerText =(id , text) =>{
+    document.getElementById(id).innerText =text;
+}
+
+const displayTemparature =(temperature)=>{
+    setInnerText('city', temperature.name);
+    setInnerText('temperature', temperature.main.temp);
+    setInnerText('temperature-condition', temperature.weather[0].main);
+    //set weather icon
+    const url = `https://openweathermap.org/img/wn/${temperature.weather[0].icon}@2x.png` ;
+    const imgIcon = document.getElementById('weather-icon');
+    imgIcon.setAttribute('src' , url);
 }
